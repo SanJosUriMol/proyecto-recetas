@@ -132,3 +132,14 @@ La aplicación está desplegada en AWS Lightsail con:
 
 URL de producción: https://chef-ia.shop
 Documentación Swagger: https://chef-ia.shop/docs
+
+## Notas de seguridad
+
+- Las contraseñas se almacenan con hash bcrypt
+- Los tokens JWT expiran en 60 minutos
+- Las variables sensibles se manejan con archivo `.env` nunca versionado
+- GitHub Push Protection activado para prevenir exposición de secrets
+
+## Licencia
+
+Proyecto académico — Universidad Simón Bolívar, 2026
