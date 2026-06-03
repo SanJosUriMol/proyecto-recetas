@@ -94,3 +94,14 @@ MYSQL_USER=app_user
 MYSQL_PASSWORD=app_password
 
 > ⚠️ Nunca subas el archivo `.env` al repositorio. Está incluido en `.gitignore`.
+
+### 4. Levantar con Docker Compose
+
+docker compose up --build
+
+La API estará disponible en http://localhost:8000
+Documentación Swagger: http://localhost:8000/docs
+
+### 5. Ejecutar pruebas
+
+docker compose exec app pytest
