@@ -80,3 +80,17 @@ cd proyecto-recetas
 
 cp .env.example .env
 # Editar .env con tus credenciales reales
+
+### 3. Variables necesarias en .env
+
+DATABASE_URL=mysql+pymysql://app_user:app_password@db:3306/recetas_db
+SECRET_KEY=tu_clave_secreta_aqui
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+OPENROUTER_API_KEY=sk-or-v1-...
+OPENROUTER_MODEL=openrouter/auto
+MYSQL_ROOT_PASSWORD=root_password
+MYSQL_USER=app_user
+MYSQL_PASSWORD=app_password
+
+> ⚠️ Nunca subas el archivo `.env` al repositorio. Está incluido en `.gitignore`.
