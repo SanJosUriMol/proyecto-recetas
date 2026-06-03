@@ -105,3 +105,19 @@ Documentación Swagger: http://localhost:8000/docs
 ### 5. Ejecutar pruebas
 
 docker compose exec app pytest
+
+## Endpoints principales
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| POST | `/auth/registro` | Registrar nuevo usuario |
+| POST | `/auth/login` | Iniciar sesión (devuelve JWT) |
+| GET | `/ingredientes/` | Listar ingredientes |
+| POST | `/ingredientes/` | Agregar ingrediente |
+| PUT | `/ingredientes/{id}` | Editar ingrediente |
+| DELETE | `/ingredientes/{id}` | Eliminar ingrediente |
+| POST | `/recetas/generar` | Generar receta con IA |
+| GET | `/recetas/` | Ver historial de recetas |
+| GET | `/recetas/{id}` | Ver receta específica |
+| DELETE | `/recetas/{id}` | Eliminar receta |
+| POST | `/recetas/{id}/calificar` | Calificar receta (1-5 estrellas) |
