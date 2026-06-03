@@ -93,9 +93,15 @@ async function registro(){
 // TOKEN
 
 function getToken(){
-    return localStorage.getItem("token");
-}
+    const token = localStorage.getItem("token");
 
+    if(!token){
+        window.location.href = "login.html";
+        return null;
+    }
+
+    return token;
+}
 // INGREDIENTES
 
 async function cargarIngredientes(){
@@ -110,6 +116,20 @@ async function cargarIngredientes(){
         }
     );
 
+    // 🔐 Manejo de token inválido
+    if(response.status === 401){
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // ❌ Manejo de error general
+    if(!response.ok){
+        document.getElementById("ingredientes").innerHTML =
+            "<p>Error al cargar ingredientes</p>";
+        return;
+    }
+
     const data = await response.json();
 
     let html = "";
@@ -121,9 +141,8 @@ async function cargarIngredientes(){
             <b>${i.nombre}</b>
             (${i.cantidad || ""} ${i.unidad || ""})
 
-            <button
-            onclick="eliminarIngrediente(${i.id})">
-            Eliminar
+            <button onclick="eliminarIngrediente(${i.id})">
+                Eliminar
             </button>
         </div>`;
     });
@@ -215,6 +234,13 @@ async function generarReceta(){
         }
     );
 
+    // 🔐 token inválido
+    if(response.status === 401){
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+        return;
+    }
+
     if(response.ok){
         alert("Receta generada correctamente");
         cargarRecetas();
@@ -222,7 +248,6 @@ async function generarReceta(){
         alert("No se pudo generar la receta");
     }
 }
-
 
 async function cargarRecetas(){
 
@@ -236,6 +261,20 @@ async function cargarRecetas(){
                 }
             }
         );
+
+    // 🔐 token inválido
+    if(response.status === 401){
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // ❌ error general
+    if(!response.ok){
+        document.getElementById("recetas").innerHTML =
+            "<p>Error al cargar recetas</p>";
+        return;
+    }
 
     const recetas =
         await response.json();
@@ -260,21 +299,18 @@ async function cargarRecetas(){
             </p>
 
             <p>
-                  Fecha:
-                 ${new Date(r.created_at).toLocaleString()}
+                Fecha:
+                ${new Date(r.created_at).toLocaleString()}
             </p>
 
-            <button
-             onclick="eliminarReceta(${r.id})">
-             Eliminar
+            <button onclick="eliminarReceta(${r.id})">
+                Eliminar
             </button>
 
         </div>`;
     });
 
-    document.getElementById(
-        "recetas"
-    ).innerHTML = html;
+    document.getElementById("recetas").innerHTML = html;
 }
 
 async function eliminarReceta(id){
@@ -283,8 +319,7 @@ async function eliminarReceta(id){
         return;
     }
 
-
-    await fetch(
+    const response = await fetch(
         `${API}/recetas/${id}`,
         {
             method:"DELETE",
@@ -294,6 +329,13 @@ async function eliminarReceta(id){
             }
         }
     );
+
+    // 🔐 token inválido
+    if(response.status === 401){
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+        return;
+    }
 
     cargarRecetas();
 }
