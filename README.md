@@ -21,3 +21,36 @@ Aplicación web desarrollada con **FastAPI + MySQL + OpenRouter (LLM)** que perm
 - **Despliegue:** AWS Lightsail + Docker + Docker Compose
 - **Pruebas:** pytest
 - **Frontend:** HTML + CSS + JavaScript (SPA)
+
+## Estructura del proyecto
+
+proyecto-recetas/
+├── app/
+│   ├── main.py              # Punto de entrada
+│   ├── config.py            # Variables de entorno
+│   ├── database.py          # Conexión SQLAlchemy
+│   ├── models/
+│   │   └── models.py        # Tablas de la BD
+│   ├── routers/
+│   │   ├── auth.py          # Registro e inicio de sesión
+│   │   ├── ingredientes.py  # CRUD de ingredientes
+│   │   └── recetas.py       # Generación y gestión de recetas
+│   ├── schemas/
+│   │   └── schemas.py       # Modelos Pydantic
+│   └── services/
+│       ├── auth_service.py  # JWT y contraseñas
+│       └── llm_service.py   # Integración OpenRouter
+├── tests/
+│   ├── test_ingredientes.py
+│   ├── test_llm_service.py
+│   └── test_calificacion.py
+├── static/
+│   ├── index.html
+│   ├── style.css
+│   ├── app.js
+│   └── favicon.ico
+├── docker-compose.yml
+├── Dockerfile
+├── .env.example
+├── pytest.ini
+└── requirements.txt
