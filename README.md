@@ -11,3 +11,13 @@ Aplicación web desarrollada con **FastAPI + MySQL + OpenRouter (LLM)** que perm
 | Natalia Baena | @nataliatbaena-code |
 | Nestor Alandete | @nestor2208 |
 | Rafael Garcia | @rafalegartor05 |
+
+## Tecnologías
+
+- **Backend:** Python 3.11 + FastAPI
+- **Base de datos:** MySQL 8.0 + SQLAlchemy
+- **Autenticación:** JWT (python-jose + passlib)
+- **LLM:** OpenRouter API (modelo automático)
+- **Despliegue:** AWS Lightsail + Docker + Docker Compose
+- **Pruebas:** pytest
+- **Frontend:** HTML + CSS + JavaScript (SPA)
