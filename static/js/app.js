@@ -267,14 +267,11 @@ async function eliminarReceta(id){
 
 function inicializarDashboard(){
 
+    if(!getToken()){
+        window.location.href = "login.html";
+        return;
+    }
+
     cargarIngredientes();
     cargarRecetas();
-}
-
-function cerrarSesion(){
-
-    localStorage.removeItem("token");
-
-    window.location.href =
-        "login.html";
 }
