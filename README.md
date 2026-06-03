@@ -68,3 +68,15 @@ Relaciones:
 - Un usuario tiene muchos ingredientes
 - Un usuario tiene muchas recetas
 - Una receta tiene muchas calificaciones
+
+## Configuración local
+
+### 1. Clonar el repositorio
+
+git clone https://github.com/SanJosUriMol/proyecto-recetas.git
+cd proyecto-recetas
+
+### 2. Crear archivo .env
+
+cp .env.example .env
+# Editar .env con tus credenciales reales
