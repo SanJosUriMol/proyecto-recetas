@@ -2,6 +2,10 @@ import json
 import httpx
 from app.config import settings
 
+
+# Servicio de integración con OpenRouter API
+# Responsable de construir el prompt, llamar al LLM y parsear la respuesta
+# El modelo se configura mediante la variable OPENROUTER_MODEL en el .env
 PROMPT_TEMPLATE = """Eres un chef experto. A partir de los siguientes ingredientes disponibles, genera UNA receta completa.
 
 Ingredientes disponibles: {ingredientes}
@@ -19,11 +23,11 @@ Responde UNICAMENTE con un objeto JSON valido con esta estructura exacta (sin te
   "tiempo_estimado": "30 minutos",
   "nivel_dificultad": "Facil"
 }}"""
-
+# Construye el prompt enviado al LLM con los ingredientes del usuario
 def build_prompt(ingredientes: list) -> str:
     ingredientes_str = ", ".join(ingredientes)
     return PROMPT_TEMPLATE.format(ingredientes=ingredientes_str)
-
+# Parsea y valida la respuesta JSON del LLM
 def parse_llm_response(raw_response: str) -> dict:
     text = raw_response.strip()
     if text.startswith("```"):
@@ -38,7 +42,7 @@ def parse_llm_response(raw_response: str) -> dict:
     if missing:
         raise ValueError(f"La respuesta del LLM no contiene los campos requeridos: {missing}")
     return data
-
+# Llama a OpenRouter y devuelve la receta parseada
 async def generate_recipe(ingredientes: list) -> dict:
     prompt = build_prompt(ingredientes)
     async with httpx.AsyncClient(timeout=30) as client:
