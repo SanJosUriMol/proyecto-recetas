@@ -7,6 +7,12 @@ async function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
+    if(!email || !password){
+        document.getElementById("mensaje").innerText =
+            "Debe completar todos los campos";
+        return;
+    }
+
     const formData = new URLSearchParams();
 
     formData.append("username", email);
@@ -53,6 +59,12 @@ async function registro(){
 
     const password =
         document.getElementById("password").value;
+
+    if(!nombre || !email || !password){
+        document.getElementById("mensaje").innerText =
+            "Debe completar todos los campos";
+        return;
+    }
 
     const response = await fetch(
         `${API}/auth/registro`,
