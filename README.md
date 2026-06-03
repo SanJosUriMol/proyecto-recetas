@@ -54,3 +54,17 @@ proyecto-recetas/
 ├── .env.example
 ├── pytest.ini
 └── requirements.txt
+
+## Modelo de base de datos
+
+El sistema cuenta con 4 tablas relacionales:
+
+- **usuarios** — almacena nombre, email y contraseña hasheada
+- **ingredientes** — ingredientes del inventario personal de cada usuario
+- **recetas** — recetas generadas por la IA con ingredientes, pasos, tiempo y dificultad
+- **calificaciones** — calificaciones de 1 a 5 estrellas por receta y usuario
+
+Relaciones:
+- Un usuario tiene muchos ingredientes
+- Un usuario tiene muchas recetas
+- Una receta tiene muchas calificaciones
