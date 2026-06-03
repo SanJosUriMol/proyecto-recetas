@@ -350,3 +350,10 @@ function inicializarDashboard(){
     cargarIngredientes();
     cargarRecetas();
 }
+
+function cerrarSesion() {
+    if(confirm("¿Seguro que deseas cerrar sesión?")) {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+    }
+}
