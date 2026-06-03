@@ -151,20 +151,32 @@ async function agregarIngrediente(){
         ).value;
 
     await fetch(`${API}/ingredientes`,{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
-            Authorization:
-            `Bearer ${getToken()}`
-        },
-        body:JSON.stringify({
-            nombre,
-            cantidad,
-            unidad
-        })
-    });
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json",
+        Authorization:
+        `Bearer ${getToken()}`
+    },
+    body:JSON.stringify({
+        nombre,
+        cantidad,
+        unidad
+    })
+});
 
-    cargarIngredientes();
+document.getElementById(
+    "nombreIngrediente"
+).value = "";
+
+document.getElementById(
+    "cantidadIngrediente"
+).value = "";
+
+document.getElementById(
+    "unidadIngrediente"
+).value = "";
+
+cargarIngredientes();
 }
 
 async function eliminarIngrediente(id){
