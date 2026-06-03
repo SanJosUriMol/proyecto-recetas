@@ -131,7 +131,7 @@ La aplicación está desplegada en AWS Lightsail con:
 - IP estática configurada
 
 URL de producción: https://chef-ia.shop
-Documentación Swagger: https://chef-ia.shop/docs
+Documentación en producción: https://chef-ia.shop/docs
 
 ## Notas de seguridad
 
