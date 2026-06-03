@@ -204,7 +204,7 @@ async function eliminarIngrediente(id){
 
 async function generarReceta(){
 
-    await fetch(
+   const response = await fetch(
         `${API}/recetas/generar`,
         {
             method:"POST",
@@ -215,8 +215,14 @@ async function generarReceta(){
         }
     );
 
-    cargarRecetas();
+    if(response.ok){
+        alert("Receta generada correctamente");
+        cargarRecetas();
+    } else {
+        alert("No se pudo generar la receta");
+    }
 }
+
 
 async function cargarRecetas(){
 
