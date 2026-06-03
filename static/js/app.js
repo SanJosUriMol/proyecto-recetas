@@ -169,6 +169,11 @@ async function agregarIngrediente(){
 
 async function eliminarIngrediente(id){
 
+    if(!confirm("¿Desea eliminar este ingrediente?")){
+        return;
+    }
+
+
     await fetch(
         `${API}/ingredientes/${id}`,
         {
@@ -250,6 +255,11 @@ async function cargarRecetas(){
 }
 
 async function eliminarReceta(id){
+
+    if(!confirm("¿Desea eliminar esta receta?")){
+        return;
+    }
+
 
     await fetch(
         `${API}/recetas/${id}`,
