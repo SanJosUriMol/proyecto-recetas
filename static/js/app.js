@@ -253,6 +253,11 @@ async function cargarRecetas(){
                 ${r.nivel_dificultad || "N/A"}
             </p>
 
+            <p>
+                  Fecha:
+                 ${new Date(r.created_at).toLocaleString()}
+            </p>
+
             <button
              onclick="eliminarReceta(${r.id})">
              Eliminar
