@@ -121,3 +121,14 @@ docker compose exec app pytest
 | GET | `/recetas/{id}` | Ver receta específica |
 | DELETE | `/recetas/{id}` | Eliminar receta |
 | POST | `/recetas/{id}/calificar` | Calificar receta (1-5 estrellas) |
+
+## Despliegue en producción
+
+La aplicación está desplegada en AWS Lightsail con:
+- Docker + Docker Compose
+- Dominio propio con registro A en GoDaddy
+- Certificado SSL gratuito con Let's Encrypt (Certbot + Nginx)
+- IP estática configurada
+
+URL de producción: https://chef-ia.shop
+Documentación Swagger: https://chef-ia.shop/docs
