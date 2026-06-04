@@ -23,10 +23,12 @@ Responde UNICAMENTE con un objeto JSON valido con esta estructura exacta (sin te
   "tiempo_estimado": "30 minutos",
   "nivel_dificultad": "Facil"
 }}"""
+
 # Construye el prompt enviado al LLM con los ingredientes del usuario
 def build_prompt(ingredientes: list) -> str:
     ingredientes_str = ", ".join(ingredientes)
     return PROMPT_TEMPLATE.format(ingredientes=ingredientes_str)
+
 # Parsea y valida la respuesta JSON del LLM
 def parse_llm_response(raw_response: str) -> dict:
     text = raw_response.strip()
@@ -42,6 +44,7 @@ def parse_llm_response(raw_response: str) -> dict:
     if missing:
         raise ValueError(f"La respuesta del LLM no contiene los campos requeridos: {missing}")
     return data
+
 # Llama a OpenRouter y devuelve la receta parseada
 async def generate_recipe(ingredientes: list) -> dict:
     prompt = build_prompt(ingredientes)
