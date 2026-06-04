@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef IA — Generador de Recetas</title>
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🍳 Chef<span>IA</span></div>
+    <div class="nav-actions" id="navActions">
+      <button class="btn-nav btn-outline" onclick="openModal('login')">Iniciar sesión</button>
+      <button class="btn-nav btn-solid" onclick="openModal('register')">Registrarse</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-decor">🍽</div>
+    <div class="hero-content">
+      <div class="hero-tag">IA Culinaria activa</div>
+      <h1>Tu chef personal<br>con <em>inteligencia</em><br>artificial</h1>
+      <p>Dinos qué tienes en tu nevera y nuestra IA generará recetas deliciosas, paso a paso, adaptadas exactamente a tus ingredientes.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="openModal('register')">Empezar gratis →</button>
+        <button class="btn-secondary" onclick="openModal('login')">Ya tengo cuenta</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <section id="app">
+    <div class="app-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="user-card">
+          <div class="user-avatar" id="userAvatar">?</div>
+          <div class="user-name" id="userName">Chef</div>
+          <div class="user-email" id="userEmail">—</div>
+          <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title"><span class="icon">🥕</span> Mi inventario</div>
+          <div class="ingredient-form">
+            <input type="text" id="ingName" placeholder="Ingrediente..." onkeydown="if(event.key==='Enter') addIngredient()">
+            <button class="btn-add" onclick="addIngredient()">+</button>
+          </div>
+          <div class="ingredient-list" id="ingredientList">
+            <div style="text-align:center;padding:20px;color:var(--text-muted);font-size:0.85rem">Sin ingredientes aún</div>
+          </div>
+        </div>
+
+        <button class="btn-generate" id="btnGenerate" onclick="generateRecipe()">
+          <span id="genIcon">✨</span>
+          <span id="genText">Generar receta</span>
+        </button>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main-content">
+        <div class="section-header">
+          <div class="section-title">Mis recetas</div>
+        </div>
+
+        <div class="generating-card" id="generatingCard">
+          <div class="spinner"></div>
+          <h3>Consultando al chef IA...</h3>
+          <p>Analizando tu inventario y creando algo delicioso</p>
+        </div>
+
+        <div class="recipes-grid" id="recipesGrid">
+          <div class="empty-state">
+            <div class="empty-icon">👨‍🍳</div>
+            <h3>¡Aún no hay recetas!</h3>
+            <p>Agrega ingredientes y presiona "Generar receta"<br>para que la IA cree algo delicioso para ti.</p>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </section>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-title">Chef<span style="color:var(--orange)">IA</span></div>
+      <div class="modal-sub">Tu asistente culinario con inteligencia artificial</div>
+      <div class="modal-tabs">
+        <button class="tab-btn active" id="tabLogin" onclick="switchTab('login')">Iniciar sesión</button>
+        <button class="tab-btn" id="tabRegister" onclick="switchTab('register')">Registrarse</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="formLogin">
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" id="loginEmail" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="loginPassword" placeholder="••••••••">
+        </div>
+        <button class="btn-submit" onclick="login()">Iniciar sesión</button>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="formRegister" style="display:none">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="regName" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" id="regEmail" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="regPassword" placeholder="Mínimo 6 caracteres">
+        </div>
+        <button class="btn-submit" onclick="register()">Crear cuenta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
