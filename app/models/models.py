@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.database import Base
 
+#Modelo del usuario
 class Usuario(Base):
     __tablename__ = "usuarios"
     id = Column(Integer, primary_key=True, index=True)
@@ -13,6 +14,7 @@ class Usuario(Base):
     ingredientes = relationship("Ingrediente", back_populates="usuario", cascade="all, delete")
     recetas = relationship("Receta", back_populates="usuario", cascade="all, delete")
 
+#Modelo de los ingredientes
 class Ingrediente(Base):
     __tablename__ = "ingredientes"
     id = Column(Integer, primary_key=True, index=True)
@@ -22,6 +24,7 @@ class Ingrediente(Base):
     usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
     usuario = relationship("Usuario", back_populates="ingredientes")
 
+#Modelo de las recetas
 class Receta(Base):
     __tablename__ = "recetas"
     id = Column(Integer, primary_key=True, index=True)
@@ -35,6 +38,7 @@ class Receta(Base):
     usuario = relationship("Usuario", back_populates="recetas")
     calificaciones = relationship("Calificacion", back_populates="receta", cascade="all, delete")
 
+#Modelo de las calificaciones
 class Calificacion(Base):
     __tablename__ = "calificaciones"
     id = Column(Integer, primary_key=True, index=True)
