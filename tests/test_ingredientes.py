@@ -2,6 +2,8 @@ import pytest
 from pydantic import ValidationError
 from app.schemas.schemas import IngredienteCreate
 
+#Ingredientes, cantidad y unidades de estos para las recetas
+
 def test_ingrediente_nombre_valido():
     ing = IngredienteCreate(nombre="Tomate", cantidad="2", unidad="unidades")
     assert ing.nombre == "Tomate"
