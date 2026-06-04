@@ -10,6 +10,7 @@ from app.services.auth_service import hash_password, verify_password, create_acc
 router = APIRouter(prefix="/auth", tags=["Autenticacion"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
+#Proceso de gestion de usuario
 def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> Usuario:
     try:
         payload = decode_token(token)
@@ -21,6 +22,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
     return user
 
+#Proceso de registro del usuario
 @router.post("/registro", response_model=UsuarioOut, status_code=201)
 def registro(data: UsuarioCreate, db: Session = Depends(get_db)):
     if db.query(Usuario).filter(Usuario.email == data.email).first():
@@ -31,6 +33,7 @@ def registro(data: UsuarioCreate, db: Session = Depends(get_db)):
     db.refresh(user)
     return user
 
+#Proceso de inicio de sesion del usuario ya registrado
 @router.post("/login", response_model=Token)
 def login(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = db.query(Usuario).filter(Usuario.email == form.username).first()
