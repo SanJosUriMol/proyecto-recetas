@@ -2,6 +2,7 @@ import pytest
 import json
 from app.services.llm_service import build_prompt, parse_llm_response
 
+#Ejemplos de datos que se insertaran o se mostraran en la pagina
 def test_build_prompt_contiene_ingredientes():
     prompt = build_prompt(["tomate", "cebolla", "ajo"])
     assert "tomate" in prompt
